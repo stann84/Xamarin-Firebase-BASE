@@ -15,6 +15,12 @@ namespace TestXamarinFirebase.Helper
         {
             firebase = new FirebaseClient(adresse);
         }
+
+        #region lister tout les users
+
+        #endregion
+
+        #region Chercher un user   
         public async Task<User> GetUser(User user)
         {
             try
@@ -28,7 +34,18 @@ namespace TestXamarinFirebase.Helper
                     Email = item.Object.Email,
                     Id = item.Object.Id,
                     Nom = item.Object.Nom,
-                    Prenom = item.Object.Prenom
+                    Prenom = item.Object.Prenom,
+                    Fievre = item.Object.Fievre,
+                    Diagnostique = item.Object.Diagnostique,
+                    Toux = item.Object.Toux,
+                    MauxDeGorge = item.Object.MauxDeGorge,
+                    Courbature = item.Object.Courbature,
+                    Odorat = item.Object.Odorat,
+                    Fatigue = item.Object.Fatigue,
+                    GeneRespiratoire = item.Object.GeneRespiratoire,
+                    Diarrhee = item.Object.Diarrhee,
+                    Conjonctivite = item.Object.Conjonctivite,
+                    Depiste = item.Object.Depiste,
                 }).ToList();
 
                 // recherche dans la liste un utilisateur par son Id
@@ -45,10 +62,15 @@ namespace TestXamarinFirebase.Helper
             }
             catch (Exception e)
             {
-                //await DisplayAlert("Erreur", e.Message, "OK");
+                // await DisplayAlert("Erreur", e.Message, "OK");
                 return null;
             }
         }
+
+        #endregion
+
+        #region ecrire dans la bdd
+
         public async Task WriteDataBase(User util)
         {
             await firebase.Child("Users").PostAsync(new User()
@@ -61,6 +83,10 @@ namespace TestXamarinFirebase.Helper
                 Prenom = util.Prenom
             });
         }
+        #endregion
+
+        #region metre a jour un user
+
         public async Task UpdateUser(User UpUser)
         {
             var UpdatePerson = (await firebase.Child("Users").OnceAsync<User>()).Where(a => a.Object.Id == UpUser.Id).FirstOrDefault();
@@ -73,13 +99,34 @@ namespace TestXamarinFirebase.Helper
                 Prenom = UpUser.Prenom,
                 Tel = UpUser.Tel,
                 PhotoUrl = UpUser.PhotoUrl,
-                PhotoName = UpUser.PhotoName
+                PhotoName = UpUser.PhotoName,
+                // Symptomes
+                Fievre = UpUser.Fievre,
+                Diagnostique = UpUser.Diagnostique,
+                Toux = UpUser.Toux,
+                MauxDeGorge = UpUser.MauxDeGorge,
+                Courbature = UpUser.Courbature,
+                Odorat = UpUser.Odorat,
+                Fatigue = UpUser.Fatigue,
+                GeneRespiratoire = UpUser.GeneRespiratoire,
+                Diarrhee = UpUser.Diarrhee,
+                Conjonctivite = UpUser.Conjonctivite,
+                Depiste = UpUser.Depiste,
+                //Geolocalisation
+                Longitude = UpUser.Longitude,
+                Latitude = UpUser.Latitude,
             });
         }
+        #endregion
+
+        #region lire un user
+
         public async Task<User> ReadDatabase(User user)
         {
             user = await GetUser(user);    // Récuppère les données utilisateurs de la Database
             return user;
         }
+        #endregion
+
     }
 }

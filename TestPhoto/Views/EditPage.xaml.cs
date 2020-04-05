@@ -37,6 +37,9 @@ namespace TestXamarinFirebase
             user = auth.IsAuth();   // Récuppère l'id & l'email
             VerifyData();           // Vérifie s'il y a des données dans la DataBase concernant l'utilisateur, si oui elles seront inclues et affichées
         }
+
+        #region read data
+
         public async void VerifyData()
         {
             user = await dataBase.ReadDatabase(user);
@@ -53,7 +56,12 @@ namespace TestXamarinFirebase
                 imgff.Source = user.PhotoUrl;
                 photo = true;
             }
+            
         }
+        #endregion
+
+        #region bouton photo
+
         private async void BtnPick_Clicked(Object sender, EventArgs e)
         {
             await CrossMedia.Current.Initialize();
@@ -87,6 +95,10 @@ namespace TestXamarinFirebase
                 Debug.WriteLine(ex.Message);
             }
         }
+        #endregion
+
+        #region bouton save
+
         private async void BtnSave_Clicked(Object sender, EventArgs e)
         {
             if(photo)
@@ -113,11 +125,18 @@ namespace TestXamarinFirebase
             user.Prenom = Prenom.Text;
             user.Nom = Nom.Text;
             user.Tel = Tel.Text;
-            
+            VerifyData();
+                        
             //modifie les données dans la DataBase
             await dataBase.UpdateUser(user);
             await DisplayAlert("Sauvegarde de votre profil réussi", "", "ok");
-            await Navigation.PopAsync();
+            await Navigation.PushAsync(new SymptomesPage());
+        }
+        #endregion
+
+        private async void Btnstat_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new StatistiquesPage());
         }
     }
 }

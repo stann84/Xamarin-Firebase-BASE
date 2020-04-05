@@ -55,6 +55,11 @@
                     Text="Sauvegarder" 
                     Clicked="BtnSave_Clicked"
              />
+            <Button x:Name="btnstat" 
+                    WidthRequest="200" 
+                    Text="Stat" 
+                    Clicked="Btnstat_Clicked"
+             />
         </StackLayout>
         <Label x:Name="lblPath"></Label>
 
