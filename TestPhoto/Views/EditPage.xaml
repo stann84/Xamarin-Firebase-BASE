@@ -44,6 +44,10 @@
             HorizontalOptions="CenterAndExpand" 
             Orientation="Vertical"
         >
+            <!--<StackLayout>
+                <CheckBox 
+            </StackLayout>-->    
+            
             <Button x:Name="btnPick" 
                     WidthRequest="200" 
                     Text="Changer la Photo" 

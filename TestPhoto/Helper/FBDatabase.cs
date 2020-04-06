@@ -1,6 +1,8 @@
 ﻿using Firebase.Database;
 using Firebase.Database.Query;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using TestXamarinFirebase.Model;
@@ -18,15 +20,46 @@ namespace TestXamarinFirebase.Helper
 
         #region lister tout les users
 
+        public async Task<List<User>> GetAllUsers()
+        {
+            try { 
+            var userlist = (await firebase
+                    .Child("Users")
+                    .OnceAsync<User>())
+                    .Select(item => new User(){
+                        Fievre = item.Object.Fievre,
+                        Diagnostique = item.Object.Diagnostique,
+                        Toux = item.Object.Toux,
+                        MauxDeGorge = item.Object.MauxDeGorge,
+                        Courbature = item.Object.Courbature,
+                        Odorat = item.Object.Odorat,
+                        Fatigue = item.Object.Fatigue,
+                        GeneRespiratoire = item.Object.GeneRespiratoire,
+                        Diarrhee = item.Object.Diarrhee,
+                        Conjonctivite = item.Object.Conjonctivite,
+                        Depiste = item.Object.Depiste,
+                    }).ToList();
+                return userlist;
+            }                    
+            catch (Exception e ) {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+
+        }
+
         #endregion
 
-        #region Chercher un user   
+        #region Charger un user   
         public async Task<User> GetUser(User user)
         {
             try
             {
-                // Charge tous les utilisateurs
-                var allUsers = (await firebase.Child("Users").OnceAsync<User>()).Select(item => new User
+                // Charger tous les utilisateurs
+                var allUsers = (await firebase
+                    .Child("Users")
+                    .OnceAsync<User>())
+                    .Select(item => new User
                 {
                     PhotoUrl = item.Object.PhotoUrl,
                     PhotoName = item.Object.PhotoName,

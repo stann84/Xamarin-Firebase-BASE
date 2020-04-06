@@ -7,7 +7,9 @@
              x:Class="TestXamarinFirebase.StatistiquesPage">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Center">
-            <Label Text="Statistiques" FontSize="Title" />
+
+            <Label Text="Total" x:Name="Total" FontSize="Title" />
+            
             <ScrollView>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -26,25 +28,25 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Row="0" Grid.Column="0" x:Name="Fievre" Text="{Binding Fievre}"  />
+                    <Label Grid.Row="0" Grid.Column="0" x:Name="NbrFievre"/>
                     <Label Grid.Row="0" Grid.Column="1" Text="Fievre"  FontSize="Large"/>
-                    <Label Grid.Row="1" Grid.Column="0" x:Name="Toux"  />
+                    <Label Grid.Row="1" Grid.Column="0" x:Name="NbrToux"  />
                     <Label Grid.Row="1" Grid.Column="1" Text="Toux"  FontSize="Large"/>
-                    <Label Grid.Row="2" Grid.Column="0" x:Name="MauxDeGorge"  />
+                    <Label Grid.Row="2" Grid.Column="0" x:Name="NbrMauxDeGorge"  />
                     <Label Grid.Row="2" Grid.Column="1" Text="Maux De Gorge"  FontSize="Large"/>
-                    <Label Grid.Row="3" Grid.Column="0" x:Name="Courbature"  />
+                    <Label Grid.Row="3" Grid.Column="0" x:Name="NbrCourbature"  />
                     <Label Grid.Row="3" Grid.Column="1" Text="Courbature"  FontSize="Large"/>
-                    <Label Grid.Row="4" Grid.Column="0" x:Name="Odorat"  />
+                    <Label Grid.Row="4" Grid.Column="0" x:Name="NbrOdorat"  />
                     <Label Grid.Row="4" Grid.Column="1" Text="Odorat"  FontSize="Large"/>
-                    <Label Grid.Row="5" Grid.Column="0" x:Name="Fatigue"  />
+                    <Label Grid.Row="5" Grid.Column="0" x:Name="NbrFatigue"  />
                     <Label Grid.Row="5" Grid.Column="1" Text="Fatigue"  FontSize="Large"/>
-                    <Label Grid.Row="6" Grid.Column="0" x:Name="GeneRespiratoire"  />
+                    <Label Grid.Row="6" Grid.Column="0" x:Name="NbrGeneRespiratoire"  />
                     <Label Grid.Row="6" Grid.Column="1" Text="Gene Respiratoire"  FontSize="Large"/>
-                    <Label Grid.Row="7" Grid.Column="0" x:Name="Diarrhee" />
+                    <Label Grid.Row="7" Grid.Column="0" x:Name="NbrDiarrhee" />
                     <Label Grid.Row="7" Grid.Column="1" Text="Diarrhée"  FontSize="Large"/>
-                    <Label Grid.Row="8" Grid.Column="0" x:Name="Conjonctivite" />
+                    <Label Grid.Row="8" Grid.Column="0" x:Name="NbrConjonctivite" />
                     <Label Grid.Row="8" Grid.Column="1" Text="Conjonctivite"  FontSize="Large"/>
-                    <Label Grid.Row="9" Grid.Column="0" x:Name="Depiste"/>
+                    <Label Grid.Row="9" Grid.Column="0" x:Name="NbrDepiste"/>
                     <Label Grid.Row="9" Grid.Column="1" Text="Depisté posisitif"  FontSize="Large"/>
                 </Grid>
             </ScrollView>
