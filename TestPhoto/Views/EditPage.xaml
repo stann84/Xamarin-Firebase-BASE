@@ -9,10 +9,10 @@
 
     <StackLayout HorizontalOptions="Center" 
                  VerticalOptions="Start" 
-                 Margin="10">
-        <Grid>
+                 Margin="50,5,50,5"  >
+        <Grid HorizontalOptions="Center" >
             <Grid.RowDefinitions>
-                <RowDefinition Height="200"/>
+                <RowDefinition Height="200" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200" />
@@ -39,31 +39,28 @@
         <Entry x:Name="Tel" 
                Placeholder="Entrez votre n° de tél">
         </Entry>
-        
-        <StackLayout  
-            HorizontalOptions="CenterAndExpand" 
-            Orientation="Vertical"
-        >
-            <!--<StackLayout>
-                <CheckBox 
-            </StackLayout>-->    
-            
+
+        <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal" >
+
+        <CheckBox x:Name="EtreNotifie" />
+        <Label Text="Etre notifié quand un de vos contacts présente des symptomes"></Label>
+
+        </StackLayout>
+        <StackLayout HorizontalOptions="CenterAndExpand" 
+            Orientation="Vertical">
             <Button x:Name="btnPick" 
                     WidthRequest="200" 
                     Text="Changer la Photo" 
                     Clicked="BtnPick_Clicked" 
-                    Margin="0, 20, 0, 0"
-             />
+                    Margin="0, 20, 0, 0"/>
             <Button x:Name="btnSave" 
                     WidthRequest="200" 
                     Text="Sauvegarder" 
-                    Clicked="BtnSave_Clicked"
-             />
+                    Clicked="BtnSave_Clicked"/>
             <Button x:Name="btnstat" 
                     WidthRequest="200" 
                     Text="Stat" 
-                    Clicked="Btnstat_Clicked"
-             />
+                    Clicked="Btnstat_Clicked"/>
         </StackLayout>
         <Label x:Name="lblPath"></Label>
 
