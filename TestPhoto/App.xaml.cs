@@ -6,6 +6,10 @@ namespace TestXamarinFirebase
 {
     public partial class App : Application
     {
+        //custom map
+        public static double ScreenHeight;
+        public static double ScreenWidth;
+
         public App()
         {
             InitializeComponent();

@@ -31,7 +31,7 @@ namespace TestXamarinFirebase.Droid
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
             //map 
             Xamarin.FormsMaps.Init(this, savedInstanceState);
-            // Xamarin.FormsMaps.Init(this, bundle); original
+             // Xamarin.FormsMaps.Init(this, bundle); //original
 
             var width = Resources.DisplayMetrics.WidthPixels;
             var height = Resources.DisplayMetrics.HeightPixels;
