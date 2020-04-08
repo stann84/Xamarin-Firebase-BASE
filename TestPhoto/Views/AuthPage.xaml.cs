@@ -27,7 +27,7 @@ namespace TestXamarinFirebase.Views
             try
             {
                 user = await auth.LoginWithEmailPassword(EmailInput.Text, PasswordInput.Text);
-                if (user != null)                   
+                if (user != null)
                     await Navigation.PopAsync();   // retourne à la page menu                   
                 else
                     await DisplayAlert("Erreur d'Authentication", "E-mail ou Mot de passe incorect. Veuillez réessayer!", "OK");
@@ -52,6 +52,6 @@ namespace TestXamarinFirebase.Views
                 await DisplayAlert("Echec de la création du compte", "Veuillez réessayer !", "OK");
             }
         }
-        
+
     }
 }

@@ -1,14 +1,9 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-using Plugin.CurrentActivity;
+using Android.Runtime;
 using Firebase.Messaging;
-using System.Net;
-using Firebase;
+using Plugin.CurrentActivity;
 
 namespace TestXamarinFirebase.Droid
 {
@@ -29,9 +24,9 @@ namespace TestXamarinFirebase.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
-            //map 
-            Xamarin.FormsMaps.Init(this, savedInstanceState);
-             // Xamarin.FormsMaps.Init(this, bundle); //original
+            ////map 
+            //Xamarin.FormsMaps.Init(this, savedInstanceState);
+            //// Xamarin.FormsMaps.Init(this, bundle); //original
 
             var width = Resources.DisplayMetrics.WidthPixels;
             var height = Resources.DisplayMetrics.HeightPixels;
@@ -41,7 +36,7 @@ namespace TestXamarinFirebase.Droid
             App.ScreenHeight = (height - 0.5f) / density;
 
             LoadApplication(new App());
-            
+
 
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -50,6 +45,6 @@ namespace TestXamarinFirebase.Droid
             Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-        
+
     }
 }

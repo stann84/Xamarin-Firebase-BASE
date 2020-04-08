@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TestXamarinFirebase.Model
+﻿namespace TestXamarinFirebase.Model
 {
     public class User
     {

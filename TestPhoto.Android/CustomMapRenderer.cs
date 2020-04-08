@@ -1,11 +1,6 @@
 ﻿using Android.Content;
-using Android.Gms.Maps.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Maps.Android;
 
 [assembly: ExportRenderer(typeof(TestXamarinFirebase.CustomMap), typeof(TestXamarinFirebase.CustomMapRenderer))]
 

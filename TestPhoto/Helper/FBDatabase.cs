@@ -22,26 +22,29 @@ namespace TestXamarinFirebase.Helper
 
         public async Task<List<User>> GetAllUsers()
         {
-            try { 
-            var userlist = (await firebase
-                    .Child("Users")
-                    .OnceAsync<User>())
-                    .Select(item => new User(){
-                        Fievre = item.Object.Fievre,
-                        Diagnostique = item.Object.Diagnostique,
-                        Toux = item.Object.Toux,
-                        MauxDeGorge = item.Object.MauxDeGorge,
-                        Courbature = item.Object.Courbature,
-                        Odorat = item.Object.Odorat,
-                        Fatigue = item.Object.Fatigue,
-                        GeneRespiratoire = item.Object.GeneRespiratoire,
-                        Diarrhee = item.Object.Diarrhee,
-                        Conjonctivite = item.Object.Conjonctivite,
-                        Depiste = item.Object.Depiste,
-                    }).ToList();
+            try
+            {
+                var userlist = (await firebase
+                        .Child("Users")
+                        .OnceAsync<User>())
+                        .Select(item => new User()
+                        {
+                            Fievre = item.Object.Fievre,
+                            Diagnostique = item.Object.Diagnostique,
+                            Toux = item.Object.Toux,
+                            MauxDeGorge = item.Object.MauxDeGorge,
+                            Courbature = item.Object.Courbature,
+                            Odorat = item.Object.Odorat,
+                            Fatigue = item.Object.Fatigue,
+                            GeneRespiratoire = item.Object.GeneRespiratoire,
+                            Diarrhee = item.Object.Diarrhee,
+                            Conjonctivite = item.Object.Conjonctivite,
+                            Depiste = item.Object.Depiste,
+                        }).ToList();
                 return userlist;
-            }                    
-            catch (Exception e ) {
+            }
+            catch (Exception e)
+            {
                 Debug.WriteLine($"Error:{e}");
                 return null;
             }
@@ -60,26 +63,26 @@ namespace TestXamarinFirebase.Helper
                     .Child("Users")
                     .OnceAsync<User>())
                     .Select(item => new User
-                {
-                    PhotoUrl = item.Object.PhotoUrl,
-                    PhotoName = item.Object.PhotoName,
-                    Tel = item.Object.Tel,
-                    Email = item.Object.Email,
-                    Id = item.Object.Id,
-                    Nom = item.Object.Nom,
-                    Prenom = item.Object.Prenom,
-                    Fievre = item.Object.Fievre,
-                    Diagnostique = item.Object.Diagnostique,
-                    Toux = item.Object.Toux,
-                    MauxDeGorge = item.Object.MauxDeGorge,
-                    Courbature = item.Object.Courbature,
-                    Odorat = item.Object.Odorat,
-                    Fatigue = item.Object.Fatigue,
-                    GeneRespiratoire = item.Object.GeneRespiratoire,
-                    Diarrhee = item.Object.Diarrhee,
-                    Conjonctivite = item.Object.Conjonctivite,
-                    Depiste = item.Object.Depiste,
-                }).ToList();
+                    {
+                        PhotoUrl = item.Object.PhotoUrl,
+                        PhotoName = item.Object.PhotoName,
+                        Tel = item.Object.Tel,
+                        Email = item.Object.Email,
+                        Id = item.Object.Id,
+                        Nom = item.Object.Nom,
+                        Prenom = item.Object.Prenom,
+                        Fievre = item.Object.Fievre,
+                        Diagnostique = item.Object.Diagnostique,
+                        Toux = item.Object.Toux,
+                        MauxDeGorge = item.Object.MauxDeGorge,
+                        Courbature = item.Object.Courbature,
+                        Odorat = item.Object.Odorat,
+                        Fatigue = item.Object.Fatigue,
+                        GeneRespiratoire = item.Object.GeneRespiratoire,
+                        Diarrhee = item.Object.Diarrhee,
+                        Conjonctivite = item.Object.Conjonctivite,
+                        Depiste = item.Object.Depiste,
+                    }).ToList();
 
                 // recherche dans la liste un utilisateur par son Id
                 var myUser = allUsers.Where(a => a.Id == user.Id).FirstOrDefault();

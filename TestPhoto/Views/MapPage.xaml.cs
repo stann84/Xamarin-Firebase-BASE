@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestXamarinFirebase.Helper;
 using TestXamarinFirebase.Model;
 using Xamarin.Essentials;
@@ -28,7 +24,7 @@ namespace TestXamarinFirebase
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-           // var allUsers = await dataBase.GetAllUsers();
+            // var allUsers = await dataBase.GetAllUsers();
             // listUsers.ItemsSource = allUsers;
             // Console.WriteLine(lblLongitude);
         }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Firebase.Auth;
 using TestXamarinFirebase.Droid;
 using TestXamarinFirebase.Model;
 using Xamarin.Forms;
@@ -20,7 +19,7 @@ namespace TestXamarinFirebase.Droid
                 var token = await user.User.GetIdTokenAsync(false);
                 util.Id = user.User.Uid;
                 util.Email = user.User.Email;
-                return util;              
+                return util;
             }
             catch (FirebaseAuthInvalidUserException e)
             {
@@ -56,7 +55,7 @@ namespace TestXamarinFirebase.Droid
             else
                 return new User() { Id = null, Email = null, Nom = null, PhotoUrl = null, Prenom = null, Tel = null };
         }
-        
+
         public void Logout()
         {
             var auth = FirebaseAuth.Instance;

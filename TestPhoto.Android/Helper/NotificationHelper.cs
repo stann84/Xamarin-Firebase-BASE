@@ -1,11 +1,11 @@
-﻿using System;
-using System.IO;
-using System.Net;
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.Media;
 using Android.Support.V4.App;
 using Newtonsoft.Json;
+using System;
+using System.IO;
+using System.Net;
 using TestXamarinFirebase.Droid;
 using TestXamarinFirebase.Helper;
 using Xamarin.Forms;
@@ -58,7 +58,7 @@ namespace TestXamarinFirebase.Droid
                         .SetVisibility((int)NotificationVisibility.Public)
                         .SetSmallIcon(Resource.Drawable.icon)
                         .SetContentIntent(pendingIntent);
-                        
+
                 NotificationManager notificationManager = mContext.GetSystemService(Context.NotificationService) as NotificationManager;
 
                 if (global::Android.OS.Build.VERSION.SdkInt >= global::Android.OS.BuildVersionCodes.O)
@@ -94,7 +94,7 @@ namespace TestXamarinFirebase.Droid
                 WebRequest tRequest = WebRequest.Create("https://fcm.googleapis.com/fcm/send");
                 tRequest.Method = "post";
                 tRequest.ContentType = "application/json";
-                
+
                 var json = JsonConvert.SerializeObject(data);
                 Byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(json);
                 tRequest.Headers.Add(string.Format("Authorization: key={0}", applicationID));
@@ -121,5 +121,5 @@ namespace TestXamarinFirebase.Droid
                 //
             }
         }
-    }    
+    }
 }

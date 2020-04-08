@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestXamarinFirebase.Helper;
 using TestXamarinFirebase.Model;
 using Xamarin.Forms;
@@ -34,9 +32,10 @@ namespace TestXamarinFirebase
 
 
         }
-        public async void ReadStatistic () {
-        // Nombre d'utiliseur avec des symptomes
-        
+        public async void ReadStatistic()
+        {
+            // Nombre d'utiliseur avec des symptomes
+
             var list = await dataBase.GetAllUsers();
 
             int nbrFievre = list.Count(a => a.Fievre == true);
@@ -65,13 +64,13 @@ namespace TestXamarinFirebase
 
 
         public async void Geolocalisation_Clicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new MapPage());
+        {
+            await Navigation.PushAsync(new MapPage());
 
-        // await dataBase.UpdateUser(user);
+            // await dataBase.UpdateUser(user);
+        }
+
+
+        // user.Fievre = Fievre.Text
     }
-
-
-    // user.Fievre = Fievre.Text
-}
 }

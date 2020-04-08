@@ -1,6 +1,6 @@
-﻿using System.IO;
+﻿using Firebase.Storage;
+using System.IO;
 using System.Threading.Tasks;
-using Firebase.Storage;
 
 namespace TestXamarinFirebase.Helper
 {

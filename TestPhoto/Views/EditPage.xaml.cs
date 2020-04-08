@@ -56,7 +56,7 @@ namespace TestXamarinFirebase
                 imgff.Source = user.PhotoUrl;
                 photo = true;
             }
-            
+
         }
         #endregion
 
@@ -88,7 +88,7 @@ namespace TestXamarinFirebase
                         var imageStram = file.GetStream();
                         return imageStram;
                     });
-                }                             
+                }
             }
             catch (Exception ex)
             {
@@ -101,9 +101,9 @@ namespace TestXamarinFirebase
 
         private async void BtnSave_Clicked(Object sender, EventArgs e)
         {
-            if(photo)
+            if (photo)
             {
-                if(file != null)  // si on a uploadé une nouvelle image
+                if (file != null)  // si on a uploadé une nouvelle image
                 {
                     //Sauvegarde la photo dans le storage
                     await storage.UploadFile(file.GetStream(), tableName, Path.GetFileName(file.Path));
@@ -118,15 +118,15 @@ namespace TestXamarinFirebase
                     }
                     user.PhotoUrl = path;   // Enregistre le lien de la (nouvelle) photo de profil
                     user.PhotoName = Path.GetFileName(file.Path); // Enregistre le nom de la photo
-                }               
+                }
             }
-            
+
             // inscrit les données dans l'objet utilisateur
             user.Prenom = Prenom.Text;
             user.Nom = Nom.Text;
             user.Tel = Tel.Text;
             VerifyData();
-                        
+
             //modifie les données dans la DataBase
             await dataBase.UpdateUser(user);
             await DisplayAlert("Sauvegarde de votre profil réussi", "", "ok");

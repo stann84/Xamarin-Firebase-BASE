@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestXamarinFirebase.Helper;
 using TestXamarinFirebase.Model;
 using Xamarin.Forms;
@@ -10,8 +6,8 @@ using Xamarin.Forms.Xaml;
 
 namespace TestXamarinFirebase
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class SymptomesPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class SymptomesPage : ContentPage
     {
 
         IAuth auth;                     // Accès à l'Identification

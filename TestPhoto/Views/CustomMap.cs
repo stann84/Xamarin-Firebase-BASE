@@ -1,7 +1,4 @@
-﻿
-using Xamarin.Forms.Maps;
-
-namespace TestXamarinFirebase
+﻿namespace TestXamarinFirebase
 {
 	public class CustomMap : Map
 	{

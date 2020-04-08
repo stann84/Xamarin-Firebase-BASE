@@ -13,7 +13,6 @@
     <PackageReference Include="Xamarin.Firebase.Core" Version="60.1142.1" />
     <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.396" />
-    <PackageReference Include="Xamarin.Forms.Maps" Version="4.5.0.396" />
   </ItemGroup>
 
   <ItemGroup>

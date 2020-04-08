@@ -34,8 +34,8 @@ namespace TestXamarinFirebase
                 BtnLog.Text = "LogIn";
                 BtnEdit.IsEnabled = false;
                 Label.Text = "Veuillez vous Identifier";
-                user = new User{ Email = null, Id = null, Nom = null, PhotoUrl = null, Prenom = null, Tel = null};
-            }               
+                user = new User { Email = null, Id = null, Nom = null, PhotoUrl = null, Prenom = null, Tel = null };
+            }
             else                                        // LogIn
                 Navigation.PushAsync(new AuthPage());
         }
@@ -51,7 +51,7 @@ namespace TestXamarinFirebase
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            
+
             // A chaque fois que la page apparait on met à jour le texte d'accueil et le texte du boutton Log
             user = auth.IsAuth();   // Vérifie si on est connecté
             if (user.Id != null)    // si oui :

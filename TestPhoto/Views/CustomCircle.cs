@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms.Maps;
-
-namespace TestXamarinFirebase
+﻿namespace TestXamarinFirebase
 {
 	public class CustomCircle : Map
 	{
