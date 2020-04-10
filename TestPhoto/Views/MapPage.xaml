@@ -21,6 +21,9 @@
             <Button x:Name="btnLocation" Text="Geolocalise" Clicked="BtnLocation_Clicked"/>
 
             <Button x:Name="btnGeocodage" Text="Placemark" Clicked="BtnGeocodage_Clicked"/>
+
+            <Button x:Name="btnCustomMap" Text="Custom Map" Clicked="BtnCustomMap_Clicked"/>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

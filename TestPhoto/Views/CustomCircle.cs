@@ -1,9 +1,11 @@
-﻿//namespace TestXamarinFirebase
-//{
-//	public class CustomCircle : Map
-//	{
-//		public Position Position { get; set; }
+﻿using Xamarin.Forms.Maps;
 
-//		public double Radius { get; set; }
-//	}
-//}
+namespace TestXamarinFirebase
+{
+	public class CustomCircle : Map
+	{
+		public Position Position { get; set; }
+
+		public double Radius { get; set; }
+	}
+}

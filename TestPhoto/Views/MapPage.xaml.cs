@@ -98,5 +98,14 @@ namespace TestXamarinFirebase
         }
         #endregion
 
+        #region Custom Map
+
+
+        public async void BtnCustomMap_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CustomMapPage());
+        }
+        #endregion
+
     }
 }
