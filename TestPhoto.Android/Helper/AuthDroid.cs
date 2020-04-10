@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Firebase.Auth;
+using System;
 using System.Threading.Tasks;
 using TestXamarinFirebase.Droid;
 using TestXamarinFirebase.Model;
