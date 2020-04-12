@@ -6,10 +6,12 @@ using Xamarin.Forms.Maps;
 
 namespace TestXamarinFirebase
 {
-   public class CustomMapPageCS : ContentPage
+	public class CustomMapPageCS : ContentPage
 	{
 		public CustomMapPageCS()
 		{
+
+
 			var customMap = new CustomMap
 			{
 				MapType = MapType.Street,

@@ -2,7 +2,7 @@
 
 namespace TestXamarinFirebase
 {
-	public class CustomCircle : Map
+	public class CustomCircle 
 	{
 		public Position Position { get; set; }
 

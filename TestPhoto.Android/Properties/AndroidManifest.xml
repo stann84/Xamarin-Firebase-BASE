@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="tchat.Android" android:installLocation="preferExternal">
 	<uses-sdk android:minSdkVersion="23" android:targetSdkVersion="28" />
 	<application android:label="tchat.Android">
-		<provider android:name="android.support.v4.content.FileProvider" android:authorities="com.*****.*****.fileprovider" android:exported="false" android:grantUriPermissions="true">
-			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
+    <provider android:name="android.support.v4.content.FileProvider" android:authorities="com.*****.*****.fileprovider" android:exported="false" android:grantUriPermissions="true">
+      <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>      
 		</provider>
 		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" android:exported="false" />
 		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">
@@ -14,6 +14,14 @@
 				<category android:name="${applicationId}" />
 			</intent-filter>
 		</receiver>
+    <!--Ajout stan-->
+    <meta-data
+      android:name="com.google.android.geo.API_KEY"
+      android:value="AIzaSyBOLTbkGWniE2BLimEOHUW33g_XICt53_k"/>
+    <uses-library
+      android:name="org.apache.http.legacy"
+      android:required="false" />
+    <!--fin-->
 	</application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
