@@ -8,6 +8,7 @@ namespace TestXamarinFirebase
         public static double ScreenHeight;
         public static double ScreenWidth;
 
+
         public App()
         {
             InitializeComponent();

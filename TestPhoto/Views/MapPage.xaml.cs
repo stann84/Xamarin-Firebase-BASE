@@ -16,6 +16,9 @@ namespace TestXamarinFirebase
         IAuth auth;                     // Accès à l'Identification
         User user = new User();         // Objet ou seront stockées les données de l'Utilisateur
 
+        public CustomMap customMap1 { get; set; }
+
+
         public MapPage()
         {
             InitializeComponent();
@@ -89,6 +92,7 @@ namespace TestXamarinFirebase
         {
             var placemark = new Placemark
             {
+                
                 CountryName = "United States",
                 AdminArea = "WA",
                 Thoroughfare = "Microsoft Building 25",
@@ -104,59 +108,142 @@ namespace TestXamarinFirebase
 
         public async void BtnCustomMap_Clicked(object sender, EventArgs e)
         {
+            //FBDatabase dataBase = new FBDatabase("https://tchat-7c40f.firebaseio.com/"); // url vers la Database firebase
+            //var users = await dataBase.GetAllUsers();
+           
             try
             {
-                var location = await Geolocation.GetLastKnownLocationAsync();
+                 var location = await Geolocation.GetLastKnownLocationAsync();
                 // var location = new Location(47.645160, -122.1306032);
 
 
                 if (location != null)
+                   
                 {
                      Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
                     //lblLatitude.Text = location.Latitude.ToString();
                     //lblLongitude.Text = location.Longitude.ToString();
 
-                    // je recupere les donnée deja inscrite
+                    // je lis les données dans le user
+                    user = await dataBase.ReadDatabase(user);
 
                     var customMap = new CustomMap
                     {
                         MapType = MapType.Street,
                         WidthRequest = App.ScreenWidth,
-                        HeightRequest = App.ScreenHeight
+                        HeightRequest = App.ScreenHeight,
                     };
 
                     var pin = new Pin
-                    {
-
+                    {  
                         Type = PinType.Place,
                         Position = new Position(location.Latitude, location.Longitude),
-                         Label = "moi",
+                        Label = user.Nom,
                         Address = "adresse"
                     };
 
                     var position = new Position(location.Latitude, location.Longitude);
+
                     customMap.Circle = new CustomCircle
                     {
                         Position = position,
                         Radius = 1000,
                     };
-                   // Console.WriteLine("position est = " + position);
+                    Console.WriteLine("position est = " + position);
 
-                    // j'ajoute tous les autre cercles
-                    
+                    #region j'ajoute tous les autre cercles
+
+                    foreach (User u in dataBase.Users)
+                    {
+                        var customPin = new CustomPin();
+                          
+                        customPin.MapPin.Label = u.Nom;
+                        customPin.MapPin.Position = new Position(double.Parse(u.Latitude),double.Parse(u.Longitude));
+                        //customPin.MapPin.Label = "1";
+                        //pin.MapPin.Address = u.Adresse;
+                        customPin.Id = u.Id;
+                        customMap.Pins.Add(pin);
+
+                       // customMap.CustomPins.Add(customPin);
+                        Console.WriteLine("pin de  : " +u.Nom);
+                        Console.WriteLine("Custom pin " + pin);
+                    }
+                    #region commentaire ancien pin 
+                    //public static void ForEach<T>(this System.Collections.Generic.IEnumerable<T> enumeration, Action<T> action);
 
 
-                    //customMap.Circle = new List<CustomCircle> {  customMap.Circle };
 
+                    //var pin1 = new CustomPin();
+                    //pin1.MapPin.Label = "Test";
+                    //pin1.MapPin.Position = new Position(32, 10);
+                    //pin1.MapPin.Label = "1";
+                    //pin1.MapPin.Address = "394 Pacific Ave, San Francisco CA";
+                    //pin1.Id = "Xamarin";
+
+                    //var pin2 = new CustomPin();
+                    //pin2.MapPin.Label = "Test2";
+                    //pin2.MapPin.Position = new Position(33, 11);
+                    //pin2.MapPin.Label = "2";
+                    //pin2.MapPin.Address = "394 Pacific Ave, San Francisco CA";
+                    //pin2.Id = "Xamarin";
+
+                    //customMap.CustomPins = new List<CustomPin> { pin1, pin2 };
+                    //customMap.Pins.Add(pin1.MapPin);
+                    //customMap.Pins.Add(pin2.MapPin);
+
+                    //customMap.CustomPins = new List<CustomPin>();
+
+                    //if (dataBase.Items != null && App.Items.Count > 0)
+                    //{
+                    //    foreach (var t in App.Items)
+                    //    {
+                    //        var temp = new CustomPin()
+                    //        {
+                    //            Pin = new Pin()
+                    //            {
+                    //                Label = t.Name,
+                    //                Type = PinType.Place,
+                    //                Position = new Position(t.Lat, t.Lon),
+                    //                Address = t.Address1
+                    //            },
+                    //            Url = t.Link
+                    //        };
+                    //        customMap.CustomPins.Add(temp);
+                    //    }
+                    //    foreach (var pin in customMap.CustomPins)
+                    //    {
+                    //        customMap.Pins.Add(pin.Pin);
+                    //    }
+                    // dont delete below code ,they will save you if timer doesnt work .
+
+                    //var temp1 = new MapSpan(customMap.CustomPins [0].Pin.Position,
+                    //              if(Device.OS == TargetPlatform.iOS)
+                    //              customMap.MoveToRegion (MapSpan.FromCenterAndRadius (customMap.CustomPins [0].Pin.Position, Distance.FromMiles (0.20)));
+
+                    //    if (Device.OS == TargetPlatform.Android)
+                    //        customMap.MoveToRegion(MapSpan.FromCenterAndRadius(customMap.CustomPins[0].Pin.Position, Distance.FromMiles(55.0)));
+                    //    if (Device.OS == TargetPlatform.iOS)
+                    //    {
+                    //        Device.StartTimer(TimeSpan.FromMilliseconds(500), () => {
+                    //            customMap.MoveToRegion(MapSpan.FromCenterAndRadius(customMap.CustomPins[0].Pin.Position, Distance.FromMiles(55.0)));
+                    //            return false;
+                    //        });
+                    //    }
+                    //}
+                    #endregion
 
 
                     // customMap.Pins.Add(pin);
+                    // customMap.Circle.Add
 
-                    // je lance la carte
+                     // customMap1.CustomCircle.Add(customMap.Circle);
+                        #endregion
+
+                        #region carte
+
+                        // je lance la carte
                     customMap.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromKilometers(10.0)));
                     Content = customMap;
-                    // je lis les données dans le user
-                    user = await dataBase.ReadDatabase(user);
 
                     // j'ajoute les coordonnées
                     user.Longitude = location.Longitude.ToString();
@@ -164,6 +251,7 @@ namespace TestXamarinFirebase
 
                     // je met a jour l utilisateur avec les coordoones
                     await dataBase.UpdateUser(user);
+                    #endregion
 
                 }
             }

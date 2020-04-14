@@ -12,14 +12,26 @@ namespace TestXamarinFirebase.Helper
     class FBDatabase
     {
         public FirebaseClient firebase { get; set; }
+        public List<User> Users { get; set; }
 
         public FBDatabase(string adresse)
         {
             firebase = new FirebaseClient(adresse);
+            Users = new List<User>();
+
         }
 
         #region lister tout les users
-
+        public async Task RunGetAllUsers() 
+        {
+            var users = await firebase
+                        .Child("Users")
+                        .OnceAsync<User>();
+            foreach (var u in users)
+            {                       
+                Users.Add(u.Object); 
+            }
+        }
         public async Task<List<User>> GetAllUsers()
         {
             try
@@ -29,6 +41,8 @@ namespace TestXamarinFirebase.Helper
                         .OnceAsync<User>())
                         .Select(item => new User()
                         {
+                            Id = item.Object.Id,
+                            Nom = item.Object.Nom,
                             Fievre = item.Object.Fievre,
                             Diagnostique = item.Object.Diagnostique,
                             Toux = item.Object.Toux,
@@ -40,7 +54,13 @@ namespace TestXamarinFirebase.Helper
                             Diarrhee = item.Object.Diarrhee,
                             Conjonctivite = item.Object.Conjonctivite,
                             Depiste = item.Object.Depiste,
+                            //Geolocalisation
+                            Longitude = item.Object.Longitude,
+                            Latitude = item.Object.Latitude
+                            
+                            
                         }).ToList();
+                Users = userlist;
                 return userlist;
             }
             catch (Exception e)

@@ -43,6 +43,8 @@ namespace TestXamarinFirebase
             circleOptions.InvokeStrokeWidth(0);
 
             NativeMap.AddCircle(circleOptions);
+
+            
         }
     }
 }
