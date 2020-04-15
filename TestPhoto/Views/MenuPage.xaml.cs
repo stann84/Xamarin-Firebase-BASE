@@ -41,7 +41,7 @@ namespace TestXamarinFirebase
         }
         private void OnEdit(Object sender, EventArgs e)
         {
-            Navigation.PushAsync(new EditPage());
+            Navigation.PushAsync(new MapPage());
         }
         private void OnPush(Object sender, EventArgs e)
         {

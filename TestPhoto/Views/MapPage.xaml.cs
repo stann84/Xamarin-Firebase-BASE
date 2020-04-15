@@ -6,6 +6,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
+using Map = Xamarin.Essentials.Map;
 
 namespace TestXamarinFirebase
 {
@@ -142,6 +143,8 @@ namespace TestXamarinFirebase
                         Address = "adresse"
                     };
 
+                    customMap.Pins.Add(pin);
+
                     var position = new Position(location.Latitude, location.Longitude);
 
                     customMap.Circle = new CustomCircle
@@ -155,19 +158,21 @@ namespace TestXamarinFirebase
 
                     foreach (User u in dataBase.Users)
                     {
-                        var customPin = new CustomPin();
-                          
-                        customPin.MapPin.Label = u.Nom;
-                        customPin.MapPin.Position = new Position(double.Parse(u.Latitude),double.Parse(u.Longitude));
-                        //customPin.MapPin.Label = "1";
-                        //pin.MapPin.Address = u.Adresse;
-                        customPin.Id = u.Id;
-                        customMap.Pins.Add(pin);
+                        var Pin = new Pin ()
+                        {
+                            Type = PinType.Place,
+                            Label = u.Nom,
+                            Position  = new Position(double.Parse(u.Latitude), double.Parse(u.Longitude)),
+                            Address = u.Tel
+                            // customPin.Id = u.Id;
+                            // j'ajoute le pin du user
+                            // customMap.Pins.Add(pin);
 
-                       // customMap.CustomPins.Add(customPin);
-                        Console.WriteLine("pin de  : " +u.Nom);
+                        };
+                        Console.WriteLine("pin de  : " + u.Nom);
                         Console.WriteLine("Custom pin " + pin);
-                    }
+                        customMap.Pins.Add(Pin);
+                }
                     #region commentaire ancien pin 
                     //public static void ForEach<T>(this System.Collections.Generic.IEnumerable<T> enumeration, Action<T> action);
 
@@ -233,7 +238,7 @@ namespace TestXamarinFirebase
                     #endregion
 
 
-                    // customMap.Pins.Add(pin);
+                     
                     // customMap.Circle.Add
 
                      // customMap1.CustomCircle.Add(customMap.Circle);
@@ -244,6 +249,7 @@ namespace TestXamarinFirebase
                         // je lance la carte
                     customMap.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromKilometers(10.0)));
                     Content = customMap;
+                    
 
                     // j'ajoute les coordonnées
                     user.Longitude = location.Longitude.ToString();

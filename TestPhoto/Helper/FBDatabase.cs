@@ -41,8 +41,10 @@ namespace TestXamarinFirebase.Helper
                         .OnceAsync<User>())
                         .Select(item => new User()
                         {
+                            // Identitee
                             Id = item.Object.Id,
                             Nom = item.Object.Nom,
+                            Tel = item.Object.Tel,
                             Fievre = item.Object.Fievre,
                             Diagnostique = item.Object.Diagnostique,
                             Toux = item.Object.Toux,
