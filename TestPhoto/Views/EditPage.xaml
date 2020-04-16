@@ -61,6 +61,7 @@
                     WidthRequest="200" 
                     Text="Stat" 
                     Clicked="Btnstat_Clicked"/>
+            
         </StackLayout>
         <Label x:Name="lblPath"></Label>
 

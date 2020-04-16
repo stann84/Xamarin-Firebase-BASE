@@ -104,6 +104,8 @@ namespace TestXamarinFirebase.Helper
                         Diarrhee = item.Object.Diarrhee,
                         Conjonctivite = item.Object.Conjonctivite,
                         Depiste = item.Object.Depiste,
+                        Latitude = item.Object.Latitude,
+                        Longitude = item.Object.Longitude
                     }).ToList();
 
                 // recherche dans la liste un utilisateur par son Id

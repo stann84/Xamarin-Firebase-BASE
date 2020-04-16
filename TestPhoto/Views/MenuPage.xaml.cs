@@ -41,6 +41,10 @@ namespace TestXamarinFirebase
         }
         private void OnEdit(Object sender, EventArgs e)
         {
+            Navigation.PushAsync(new EditPage());
+        }
+        private void OnMap(Object sender, EventArgs e)
+        {
             Navigation.PushAsync(new MapPage());
         }
         private void OnPush(Object sender, EventArgs e)
@@ -48,6 +52,9 @@ namespace TestXamarinFirebase
             Navigation.PushAsync(new NotifPage());
             //notification.CreateNotification("Test Xamarin-Firebase Notification", "Ceci est un test d'envoi d'une notification");
         }
+
+
+
         protected override void OnAppearing()
         {
             base.OnAppearing();

@@ -12,6 +12,7 @@
             />
             <Button x:Name="BtnLog"  Text="Login"  Clicked="OnLog" Margin="60,50,60,10"/>
             <Button x:Name="BtnEdit"  Text="Edit Profil"  Clicked="OnEdit" Margin="60,0,60,10"/>
+            <Button x:Name="BtnMap"  Text="Map Page"  Clicked="OnMap" Margin="60,0,60,10"/>
             <Button x:Name="BtnPush"  Text="Envoi Notification"  Clicked="OnPush" Margin="60,0,60,10"/>
         </StackLayout>
     </ContentPage.Content>

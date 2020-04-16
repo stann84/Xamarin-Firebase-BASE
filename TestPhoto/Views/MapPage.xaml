@@ -24,6 +24,7 @@
 
             <Button x:Name="btnCustomMap" Text="Custom Map" Clicked="BtnCustomMap_Clicked"/>
 
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

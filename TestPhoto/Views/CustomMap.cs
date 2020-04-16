@@ -7,13 +7,14 @@ namespace TestXamarinFirebase
 	{
 		public CustomCircle Circle { get; set; }
         public List<CustomPin> CustomPins { get; set; }
-		public List<CustomCircle> CustomCircle { get; set; }
+		public List<CustomCircle> CustomCircles { get; set; }
 
 
 		public CustomMap()
 		{
+			
 			CustomPins = new List<CustomPin>();
-			CustomCircle = new List<CustomCircle>();
+			CustomCircles = new List<CustomCircle>();
 		}
 	}
 }

@@ -23,9 +23,11 @@
         public bool Diarrhee { get; set; }
         public bool Conjonctivite { get; set; }
         public bool Depiste { get; set; }
+        public bool Cutane { get; set; }
+        public bool AgnosieGustative { get; set; }
         //Geolocalisation
-        public string Longitude { get; set; }
-        public string Latitude { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
     }
 }
 
