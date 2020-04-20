@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace TestXamarin-Firebase.Views
+namespace TestXamarinFirebase.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class CustomMapPage : ContentPage

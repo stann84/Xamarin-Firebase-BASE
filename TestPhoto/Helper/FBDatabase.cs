@@ -18,20 +18,19 @@ namespace TestXamarinFirebase.Helper
         {
             firebase = new FirebaseClient(adresse);
             Users = new List<User>();
-
         }
 
         #region lister tout les users
-        public async Task RunGetAllUsers() 
-        {
-            var users = await firebase
-                        .Child("Users")
-                        .OnceAsync<User>();
-            foreach (var u in users)
-            {                       
-                Users.Add(u.Object); 
-            }
-        }
+        //public async Task RunGetAllUsers() 
+        //{
+        //    var users = await firebase
+        //                .Child("Users")
+        //                .OnceAsync<User>();
+        //    foreach (var u in users)
+        //    {                       
+        //        Users.Add(u.Object); 
+        //    }
+        //}
         public async Task<List<User>> GetAllUsers()
         {
             try
@@ -116,7 +115,7 @@ namespace TestXamarinFirebase.Helper
                 {
                     // Si aucun utilisateur trouvé, on crée le compte dans la dataBase
                     await WriteDataBase(user);
-                    return new User { Email = user.Email, Id = user.Id, Nom = user.Nom, Prenom = user.Prenom, PhotoUrl = user.PhotoUrl, Tel = user.Tel };
+                    return new User { Email = user.Email, Id = user.Id, Nom = user.Nom, Prenom = user.Prenom, PhotoUrl = user.PhotoUrl, Tel = user.Tel, Fievre = user.Fievre };
                 }
 
             }
@@ -172,7 +171,7 @@ namespace TestXamarinFirebase.Helper
                 Diarrhee = UpUser.Diarrhee,
                 Conjonctivite = UpUser.Conjonctivite,
                 Depiste = UpUser.Depiste,
-                //Geolocalisation
+                // Geolocalisation
                 Longitude = UpUser.Longitude,
                 Latitude = UpUser.Latitude,
             });

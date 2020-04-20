@@ -17,9 +17,10 @@ namespace TestXamarinFirebase
         FBDatabase dataBase = new FBDatabase("https://tchat-7c40f.firebaseio.com/"); // url vers la Database firebase
         IAuth auth;                     // Accès à l'Identification
         User user = new User();         // Objet ou seront stockées les données de l'Utilisateur
+        public List<User> Users { get; set; }
+
 
         //public CustomMap customMap1 { get; set; }
-
 
         public MapPage()
         {
@@ -27,14 +28,14 @@ namespace TestXamarinFirebase
 
             auth = DependencyService.Get<IAuth>();
             user = auth.IsAuth();   // Récuppère l'id & l'email
+
         }
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            var allUsers = await dataBase.GetAllUsers();
-            //listUsers.ItemsSource = allUsers;
-            
-            Console.WriteLine(lblLongitude);
+            //var allUsers = await dataBase.GetAllUsers();
+
+            //listUsers.ItemsSource = allUsers;   
         }
 
         #region Bouton location
@@ -43,25 +44,29 @@ namespace TestXamarinFirebase
         {
             try
             {
-                var location = await Geolocation.GetLastKnownLocationAsync();
-
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                var location = await Geolocation.GetLocationAsync(request);
+                // await dataBase.UpdateUser(user.);
                 if (location != null)
                 {
-                    // Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
-                  
-
-                    // je recupere les donnée deja inscrite
+                    Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
+                    // je lis les données dans le user
                     user = await dataBase.ReadDatabase(user);
 
-                    // j'ajoute les coordonnées
-                    //user.Longitude = lblLongitude.Text;
-                    //user.Latitude = lblLatitude.Text;
-                    // je lance la carte
-                    //await Map.OpenAsync(location);
-                    // await Xamarin.Forms.
-                    // je met a jour l utilisateur avec les coordoones
-                    await dataBase.UpdateUser(user);
+                    // je recupere les donnée deja inscrite
+                    //user = await dataBase.ReadDatabase(user);
 
+                    // j'ajoute les coordonnées sur la page
+                    //user.Longitude = Double.Parse(lblLongitude.Text);
+                    //user.Latitude = Double.Parse(lblLatitude.Text);
+                    // je lance la carte
+                    await Map.OpenAsync(location);
+                    // je met a jour l utilisateur avec les coordoones
+                    // await dataBase.UpdateUser(user.Latitude , user.Longitude);
+                }
+                else
+                {
+                    await DisplayAlert("Erreur", "Probleme de localisation", "OK");
                 }
             }
             catch (FeatureNotSupportedException fnsEx)
@@ -84,14 +89,14 @@ namespace TestXamarinFirebase
         }
         #endregion
 
-        #region geocodage
+        #region Bouton geocodage
 
 
         public async void BtnGeocodage_Clicked(object sender, EventArgs e)
         {
             var placemark = new Placemark
             {
-                
+
                 CountryName = "United States",
                 AdminArea = "WA",
                 Thoroughfare = "Microsoft Building 25",
@@ -103,25 +108,28 @@ namespace TestXamarinFirebase
         }
         #endregion
 
-        #region Custom Map
+        #region Bouton Custom Map
 
         public async void BtnCustomMap_Clicked(object sender, EventArgs e)
         {
-            //FBDatabase dataBase = new FBDatabase("https://tchat-7c40f.firebaseio.com/"); // url vers la Database firebase
-           
+            FBDatabase dataBase = new FBDatabase("https://tchat-7c40f.firebaseio.com/"); // url vers la Database firebase
+
             try
             {
-                 var location = await Geolocation.GetLastKnownLocationAsync();
-                // var location = new Location(47.645160, -122.1306032);
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                var location = await Geolocation.GetLocationAsync(request);
                 Console.WriteLine($" location de l utlisateur last location: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
 
 
                 if (location != null)
-                   
+
                 {
-                    
+
                     // je lis les données dans le user
                     user = await dataBase.ReadDatabase(user);
+                    user.Latitude = location.Latitude;
+                    user.Longitude = location.Longitude;
+                    // await dataBase.UpdateUser(user);
 
                     #region ancien var pin 
 
@@ -144,7 +152,7 @@ namespace TestXamarinFirebase
                     //};
                     //Console.WriteLine("position est = " + position);
                     #endregion
-                    
+
                     var customMap = new CustomMap
                     {
                         MapType = MapType.Street,
@@ -158,21 +166,24 @@ namespace TestXamarinFirebase
                         Label = user.Nom,
                         Position = new Position(user.Latitude, user.Longitude),
                         Address = user.Tel,
-                };
+                    };
                     customMap.Pins.Add(PinUser);
 
 
 
                     #region j'ajoute tous les pin et cercles
 
-                    foreach (User u in dataBase.Users.Where(u => u.Fievre == true) )
+                   await dataBase.GetAllUsers();
+
+
+                    foreach (User u in dataBase.Users.Where(u => u.Fievre == true))
                     {
                         var Pin = new Pin()
                         {
                             Type = PinType.Place,
                             Label = u.Nom,
                             Position = new Position(u.Latitude, u.Longitude),
-                            Address = u.Tel,                         
+                            Address = u.Tel,
                         };
                         //var p = new Position(double.Parse(u.Latitude), double.Parse(u.Longitude));
                         var customCircle = new CustomCircle()
@@ -181,9 +192,9 @@ namespace TestXamarinFirebase
                             Radius = 10000,
                         };
                         Console.WriteLine(" Position des users est " + (u.Latitude, u.Longitude));
-                       // customMap.Pins.Add(Pin) ;
-                        customMap.CustomCircles.Add(customCircle);                    
-                }
+                        Console.WriteLine(" nom des users : " + u.Nom, u.Fievre);
+                        customMap.CustomCircles.Add(customCircle);
+                    }
 
                     #region commentaire ancien pin 
                     //public static void ForEach<T>(this System.Collections.Generic.IEnumerable<T> enumeration, Action<T> action);
@@ -257,15 +268,19 @@ namespace TestXamarinFirebase
                     var position = new Position(location.Latitude, location.Longitude);
                     Console.WriteLine(" posistion de la carte est " + (location.Latitude, location.Longitude));
                     customMap.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromKilometers(100.0)));
-                    Content = customMap;                    
+                    Content = customMap;
 
                     // j'ajoute les coordonnées
                     user.Longitude = location.Longitude;
                     user.Latitude = location.Latitude;
 
                     // je met a jour l utilisateur avec les coordoones
-                    await dataBase.UpdateUser(user);
+                    // await dataBase.UpdateUser(user);
                     #endregion
+                }
+                else
+                {
+                    await DisplayAlert("Erreur", "Probleme de localisation", "OK");
                 }
             }
             catch (FeatureNotSupportedException fnsEx)
