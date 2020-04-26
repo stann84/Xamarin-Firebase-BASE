@@ -134,9 +134,12 @@ namespace TestXamarinFirebase
         }
         #endregion
 
+        // void EtreNotifie
+
         private async void Btnstat_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new StatistiquesPage());
+            // PhoneDialer.
         }
     }
 }

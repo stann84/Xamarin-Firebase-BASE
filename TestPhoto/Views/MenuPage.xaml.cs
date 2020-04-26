@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Plugin.Permissions;
+using System;
+using System.Collections.ObjectModel;
 using TestXamarinFirebase.Helper;
 using TestXamarinFirebase.Model;
 using TestXamarinFirebase.Views;
@@ -52,6 +54,21 @@ namespace TestXamarinFirebase
             Navigation.PushAsync(new NotifPage());
             //notification.CreateNotification("Test Xamarin-Firebase Notification", "Ceci est un test d'envoi d'une notification");
         }
+        private void BtnContact_Clicked(object sender, EventArgs e)
+        {
+
+            CheckContact();
+
+        }
+
+        public async void CheckContact()
+        {
+
+            var contacts = await Plugin.ContactService.CrossContactService.Current.GetContactListAsync();
+            Console.WriteLine("Liste des contacts" + contacts);
+        }
+
+       
 
 
 
@@ -74,5 +91,7 @@ namespace TestXamarinFirebase
                 Label.Text = "Veuillez vous Identifier";    // Vous invite à vous identifier
             }
         }
+
+        
     }
 }

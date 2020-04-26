@@ -24,10 +24,7 @@ namespace TestXamarinFirebase.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
-            ////map 
-            //Xamarin.FormsMaps.Init(this, savedInstanceState);
-            //// Xamarin.FormsMaps.Init(this, bundle); //original
-
+        
             var width = Resources.DisplayMetrics.WidthPixels;
             var height = Resources.DisplayMetrics.HeightPixels;
             var density = Resources.DisplayMetrics.Density;
@@ -36,7 +33,6 @@ namespace TestXamarinFirebase.Droid
             App.ScreenHeight = (height - 0.5f) / density;
 
             LoadApplication(new App());
-
 
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
